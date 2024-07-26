@@ -1,0 +1,99 @@
+type Comment = record {
+  by : text;
+  id : nat64;
+  created_at : nat64;
+  comment : text;
+  useremail : text;
+};
+type CommentPayload = record { by : text; comment : text; useremail : text };
+type DeleteJobPayload = record { username : text; jobid : nat64 };
+type EnquireAboutAJob = record {
+  by : text;
+  id : nat64;
+  usernamemail : text;
+  question : text;
+  jobname : text;
+  created_at : nat64;
+};
+type EnquirePayload = record {
+  by : text;
+  usernamemail : text;
+  question : text;
+  jobname : text;
+};
+type Job = record {
+  by : text;
+  id : nat64;
+  salary : text;
+  companyphonenumber : text;
+  jobname : text;
+  created_at : nat64;
+  applicationdeadeline : text;
+  companyname : text;
+  requirements : text;
+  position : text;
+  companyemail : text;
+};
+type JobPayload = record {
+  by : text;
+  salary : text;
+  companyphonenumber : text;
+  jobname : text;
+  applicationdeadeline : text;
+  companyname : text;
+  requirements : text;
+  position : text;
+  companyemail : text;
+};
+type Question = record {
+  id : nat64;
+  question : text;
+  created_at : nat64;
+  useremail : text;
+};
+type QuestionPayload = record { question : text; useremail : text };
+type Result = variant { Ok : text; Err : text };
+type Result_1 = variant { Ok : vec Comment; Err : text };
+type Result_2 = variant { Ok : vec Job; Err : text };
+type Result_3 = variant { Ok : Job; Err : text };
+type Result_4 = variant { Ok : User; Err : text };
+type Result_5 = variant { Ok : Question; Err : text };
+type Result_6 = variant { Ok : Comment; Err : text };
+type Result_7 = variant { Ok : EnquireAboutAJob; Err : text };
+type SearchJobPayload = record { jobid : nat64 };
+type UpdateJobsPayload = record {
+  by : text;
+  salary : text;
+  companyphonenumber : text;
+  jobname : text;
+  jobid : nat64;
+  applicationdeadeline : text;
+  companyname : text;
+  requirements : text;
+  position : text;
+  companyemail : text;
+};
+type User = record {
+  id : nat64;
+  username : text;
+  created_at : nat64;
+  useremail : text;
+  phonenumber : text;
+};
+type UserPayload = record {
+  username : text;
+  useremail : text;
+  phonenumber : text;
+};
+service : {
+  delete_job_from_josearchers : (DeleteJobPayload) -> (Result);
+  get_all_comments : () -> (Result_1) query;
+  get_all_jobs : () -> (Result_2) query;
+  post_a_job : (JobPayload) -> (Result_3);
+  register_user : (UserPayload) -> (Result_4);
+  search_for_a_job : (SearchJobPayload) -> (Result_3) query;
+  update_job_details : (UpdateJobsPayload) -> (Result_3);
+  users_ask_questions : (QuestionPayload) -> (Result_5);
+  users_commets : (CommentPayload) -> (Result_6);
+  users_enquire_about_a_job : (EnquirePayload) -> (Result_7);
+}
