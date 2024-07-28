@@ -25,10 +25,10 @@ type Job = record {
   by : text;
   id : nat64;
   salary : text;
+  applicationdeadline : text;
   companyphonenumber : text;
   jobname : text;
   created_at : nat64;
-  applicationdeadeline : text;
   companyname : text;
   requirements : text;
   position : text;
@@ -37,9 +37,9 @@ type Job = record {
 type JobPayload = record {
   by : text;
   salary : text;
+  applicationdeadline : text;
   companyphonenumber : text;
   jobname : text;
-  applicationdeadeline : text;
   companyname : text;
   requirements : text;
   position : text;
@@ -64,10 +64,10 @@ type SearchJobPayload = record { jobid : nat64 };
 type UpdateJobsPayload = record {
   by : text;
   salary : text;
+  applicationdeadline : text;
   companyphonenumber : text;
   jobname : text;
   jobid : nat64;
-  applicationdeadeline : text;
   companyname : text;
   requirements : text;
   position : text;
@@ -86,7 +86,7 @@ type UserPayload = record {
   phonenumber : text;
 };
 service : {
-  delete_job_from_josearchers : (DeleteJobPayload) -> (Result);
+  delete_job_from_jobsearchers : (DeleteJobPayload) -> (Result);
   get_all_comments : () -> (Result_1) query;
   get_all_jobs : () -> (Result_2) query;
   post_a_job : (JobPayload) -> (Result_3);
@@ -94,6 +94,6 @@ service : {
   search_for_a_job : (SearchJobPayload) -> (Result_3) query;
   update_job_details : (UpdateJobsPayload) -> (Result_3);
   users_ask_questions : (QuestionPayload) -> (Result_5);
-  users_commets : (CommentPayload) -> (Result_6);
+  users_comments : (CommentPayload) -> (Result_6);
   users_enquire_about_a_job : (EnquirePayload) -> (Result_7);
 }
